@@ -35,3 +35,6 @@ Route::get('/create', [NewsController::class, 'create'])
 Route::post('/store', [NewsController::class, 'store'])
     -> name('news.store');
     // ['get', 'post'],
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
