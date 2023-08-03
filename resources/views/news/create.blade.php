@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 @if ($errors->all())
 		<div class="alert alert-danger">
 			@foreach($errors->all() as $error)
@@ -5,10 +6,21 @@
 			@endforeach
 		</div>
 	@endif
-<form method="post" action="{{ route('news.store') }}">
-    @csrf
-    <input type="text" name="title" placeholder="название статьи">
-    <input type="text" name="content"  placeholder="контент">
-    <input type="text" name="user_name" placeholder="имя юзера">
-    <button type="submit">Отправить</button>
-</form>
+<div id="editor"></div>
+	<form method="post" action="{{ route('news.store') }}">
+		@csrf
+		<input type="text" name="title" placeholder="название статьи">
+		<input type="text" name="content"  placeholder="контент">
+		<input type="text" name="user_name" placeholder="имя юзера">
+		<button type="submit">Отправить</button>
+	</form>
+@push('js')
+	<script>
+		ClassicEditor
+			.create( document.querySelector( '#editor' ) )
+			.catch( error => {
+				console.error( error );
+			} );
+	</script>
+
+
